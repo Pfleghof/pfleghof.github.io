@@ -1069,7 +1069,7 @@
 /* Basic */
 
 	body {
-		background: rgba(149, 187, 241, 0.68);
+		background: rgba(149, 187, 241, 0);
 		font-family: 'Open Sans', sans-serif;
 		font-weight: 400;
 		color: #000000;
@@ -1652,6 +1652,15 @@
 		border-bottom: solid 5px #F9D64C;
 	}
 
+	#footer-wrapper {
+		position: relative;
+		background-image: url("../../images/pf1.jpg"), url("images/overlay.png"), url("../../images/banner.jpg");
+		background-position: bottom center, center center, center center;
+		background-repeat: no-repeat, repeat, no-repeat;
+		background-size: 100%, auto, auto;
+		z-index: 1;
+	}
+
 /* Banner */
 
 	#banner {
@@ -1706,7 +1715,7 @@
 	}
 
 	#footer h2.major span {
-		background: rgba(149, 187, 241, 0.68);
+		background: ;
 	}
 
 /* Copyright */
@@ -2092,7 +2101,7 @@
 			}
 
 				#footer h2.major {
-					margin: 0 0 1em 0;
+					margin: 0 0 0 0;
 				}
 
 		/* Copyright */
