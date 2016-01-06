@@ -1638,6 +1638,24 @@ a#logo {}
 		}
 
 /* Wrappers */
+	#kontakt {
+		position: relative;
+		background-image: url("../../images/pfl_sign.jpg"), url("images/overlay.png"), url("../../images/banner.jpg");
+		background-position: center center, center center, center center;
+		background-repeat: no-repeat, repeat, no-repeat;
+		background-size: 100%, auto, auto;
+		z-index: 1;
+	}
+
+
+	#geschichte {
+		position: relative;
+		background-image: url("../../images/geschichte.jpg"), url("images/overlay.png"), url("../../images/banner.jpg");
+		background-position: center center, center center, center center;
+		background-repeat: no-repeat, repeat, no-repeat;
+		background-size: 100%, auto, auto;
+		z-index: 1;
+	}
 
 	#selbst {
 		position: relative;
@@ -1912,8 +1930,16 @@ a#logo {}
 			}
 
 		/* Wrappers */
+			#kontakt {
+				padding: 9em 0;
+			}
+
+			#geschichte {
+				padding: 9em 0;
+			}
+
 			#selbst {
-				padding: 0em 0;
+				padding: 9em 0;
 			}
 
 			#banner-wrapper {
@@ -1929,11 +1955,11 @@ a#logo {}
 
 			#header {
 				text-align: center;
-				font-size: 2em;
+				font-size: 0;
 				font-family: 'Open Sans Condensed', sans-serif;
 				font-weight: 700;
 				text-transform: uppercase;
-				padding: 5em 0 2em 0;
+				padding: 0em 0 6em 0;
 				background: rgba(255, 255, 255, 0);
 				margin: 0 auto;
 			}
@@ -1944,11 +1970,12 @@ a#logo {}
 				}
 
 					#header .logo div {
-						background: rgb(249, 214, 76);
+						background: rgba(249, 214, 76, 0);
 						position: relative;
 						display: inline-block;
 						padding: 0 1.5em 0 1.5em;
 						top: -0.65em;
+						visibility: hidden;
 					}
 
 					#header .logo h1 {
@@ -2160,6 +2187,13 @@ a#logo {}
 				}
 
 		/* Wrappers */
+			#kontakt {
+				padding: 6em 0 6em 0;
+			}
+
+			#geschichte {
+				padding: 6em 0 6em 0;
+			}
 
 			#selbst {
 				padding: 6em 0 6em 0;
@@ -2421,13 +2455,20 @@ a#logo {}
 				}
 
 		/* Wrappers */
+			#kontakt {
+				padding: 9em 0 5em 0;
+			}
+
+			#geschichte {
+				padding: 9em 0 5em 0;
+			}
 
 			#selbst {
 				padding: 9em 0 5em 0;
 			}
 
 			#banner-wrapper {
-				padding: 9em 0 5em 0;
+				padding: 1em 0 5em 0;
 			}
 
 			#main-wrapper {
