@@ -1108,6 +1108,8 @@
 		color: inherit;
 	}
 
+a#logo {}
+
 	h2.major {
 		position: relative;
 		border-top: solid 5px #F9D64C;
@@ -1637,6 +1639,15 @@
 
 /* Wrappers */
 
+	#selbst {
+		position: relative;
+		background-image: url("../../images/selbstverwaltung.jpg"), url("images/overlay.png"), url("../../images/banner.jpg");
+		background-position: center center, center center, center center;
+		background-repeat: no-repeat, repeat, no-repeat;
+		background-size: 100%, auto, auto;
+		z-index: 1;
+	}
+
 	#banner-wrapper {
 		position: relative;
 		background-image: url("../../images/pf1.jpg"), url("images/overlay.png"), url("../../images/banner.jpg");
@@ -1725,7 +1736,7 @@
 		background: #F9D64C;
 		padding: 0.75em 2em 0.75em 2em;
 		border-radius: 8px;
-		color: #8b9790;
+		color: #000000;
 	}
 
 		#copyright a {
@@ -1738,7 +1749,7 @@
 		}
 
 			#copyright .menu li {
-				border-color: #C1CAC5;
+				border-color: #9A5704;
 				border-width: 2px;
 				line-height: 1em;
 			}
@@ -1769,7 +1780,7 @@
 					}
 
 			h3, h4 {
-				font-size: 1.25em;
+				font-size: 1.75em;
 			}
 
 		/* Button */
@@ -1806,8 +1817,9 @@
 			}
 
 			.box.highlight h2 {
-				font-size: 3em;
+				font-size: 2em;
 				margin: 0 0 0.75em 0;
+				line-height: 1.25;
 			}
 
 			.box.highlight header > p {
@@ -1871,6 +1883,13 @@
 				padding-top: 0.5em;
 			}
 
+			.mail {
+				font-size: 14pt;
+				font-family: 'Open Sans', sans-serif;
+				margin: 0 0 0.5em 0;
+
+			}
+
 				.homepage .sidebar {
 					padding-top: 0;
 				}
@@ -1893,6 +1912,9 @@
 			}
 
 		/* Wrappers */
+			#selbst {
+				padding: 0em 0;
+			}
 
 			#banner-wrapper {
 				padding: 11em 0;
@@ -1912,18 +1934,17 @@
 				font-weight: 700;
 				text-transform: uppercase;
 				padding: 5em 0 2em 0;
-				background: #fff;
+				background: rgba(255, 255, 255, 0);
 				margin: 0 auto;
 			}
 
 				#header .logo {
 					position: relative;
 					text-align: center;
-					border-top: solid 5px #F9D64C;
 				}
 
 					#header .logo div {
-						background: #fff;
+						background: rgb(249, 214, 76);
 						position: relative;
 						display: inline-block;
 						padding: 0 1.5em 0 1.5em;
@@ -2000,7 +2021,7 @@
 					}
 
 					#nav li:hover a, #nav li:hover span {
-						background: #C1CAC5;
+						background: #9A5704;
 						color: #fff;
 					}
 
@@ -2139,6 +2160,10 @@
 				}
 
 		/* Wrappers */
+
+			#selbst {
+				padding: 6em 0 6em 0;
+			}
 
 			#banner-wrapper {
 				padding: 6em 0 6em 0;
@@ -2396,6 +2421,10 @@
 				}
 
 		/* Wrappers */
+
+			#selbst {
+				padding: 9em 0 5em 0;
+			}
 
 			#banner-wrapper {
 				padding: 9em 0 5em 0;
