@@ -1069,7 +1069,7 @@
 /* Basic */
 
 	body {
-		background: #f2f5f3;
+		background: rgba(149, 187, 241, 0.68);
 		font-family: 'Open Sans', sans-serif;
 		font-weight: 400;
 		color: #000000;
@@ -1368,7 +1368,7 @@
 			}
 
 				ul.contact li a:before {
-					color: #f2f5f3;
+					color: rgba(149, 187, 241, 0.68);
 					font-size: 32px;
 					line-height: 48px;
 				}
@@ -1649,7 +1649,7 @@
 	#main-wrapper {
 		background: #fff;
 		border-top: solid 5px #F9D64C;
-		border-bottom: solid 5px #c1cac5;
+		border-bottom: solid 5px #F9D64C;
 	}
 
 /* Banner */
@@ -1706,7 +1706,7 @@
 	}
 
 	#footer h2.major span {
-		background: #f2f5f3;
+		background: rgba(149, 187, 241, 0.68);
 	}
 
 /* Copyright */
@@ -1725,6 +1725,7 @@
 
 		#copyright .menu {
 			margin: 0;
+			color: #9A5704;
 		}
 
 			#copyright .menu li {
@@ -2087,7 +2088,7 @@
 
 			#footer {
 				text-align: center;
-				padding: 8em 0 8em 0;
+				padding: 4em 0 4em 0;
 			}
 
 				#footer h2.major {
