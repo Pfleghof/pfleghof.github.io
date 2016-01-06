@@ -1072,7 +1072,7 @@
 		background: #f2f5f3;
 		font-family: 'Open Sans', sans-serif;
 		font-weight: 400;
-		color: #6b7770;
+		color: #000000;
 		font-size: 11.5pt;
 		line-height: 2em;
 	}
@@ -1091,7 +1091,7 @@
 	input, textarea, select {
 		font-family: 'Open Sans', sans-serif;
 		font-weight: 400;
-		color: #6b7770;
+		color: #000000;
 		font-size: 11.5pt;
 		line-height: 2em;
 	}
@@ -1100,7 +1100,7 @@
 		font-family: 'Open Sans Condensed', sans-serif;
 		font-weight: 700;
 		text-transform: uppercase;
-		color: #6b7770;
+		color: #000000;
 	}
 
 	h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -1110,7 +1110,7 @@
 
 	h2.major {
 		position: relative;
-		border-top: solid 5px #e7eae8;
+		border-top: solid 5px #F9D64C;
 	}
 
 		h2.major span {
@@ -1130,7 +1130,7 @@
 
 	b, strong {
 		font-weight: 700;
-		color: #6b7770;
+		color: #000000;
 	}
 
 	i, em {
@@ -1251,7 +1251,7 @@
 		font-weight: 700;
 		text-transform: uppercase;
 		text-decoration: none;
-		background: #b1ddab;
+		background: #5B83BD;
 		color: #fff;
 		border: 0;
 		line-height: 1em;
@@ -1317,7 +1317,7 @@
 		}
 
 	ul.divided > li {
-		border-top: solid 2px #e7eae8;
+		border-top: solid 2px #F9D64C;
 		padding-top: 2.35em;
 		margin-top: 2.35em;
 	}
@@ -1512,7 +1512,7 @@
 		font-family: 'Open Sans Condensed', sans-serif;
 		font-weight: 700;
 		text-transform: uppercase;
-		color: #6b7770;
+		color: #000000;
 	}
 
 	form input[type="text"],
@@ -1601,7 +1601,7 @@
 				font-family: 'Open Sans Condensed', sans-serif;
 				font-weight: 700;
 				text-transform: uppercase;
-				color: #6b7770;
+				color: #000000;
 			}
 
 			table.default thead {
@@ -1639,16 +1639,16 @@
 
 	#banner-wrapper {
 		position: relative;
-		background-image: url("images/overlay.png"), url("images/overlay.png"), url("../../images/banner.jpg");
-		background-position: top left, top left, center center;
-		background-repeat: repeat, repeat, no-repeat;
-		background-size: auto, auto, cover;
+		background-image: url("../../images/pf1.jpg"), url("images/overlay.png"), url("../../images/banner.jpg");
+		background-position: center center, center center, center center;
+		background-repeat: no-repeat, repeat, no-repeat;
+		background-size: 100%, auto, auto;
 		z-index: 1;
 	}
 
 	#main-wrapper {
 		background: #fff;
-		border-top: solid 5px #b1ddab;
+		border-top: solid 5px #F9D64C;
 		border-bottom: solid 5px #c1cac5;
 	}
 
@@ -1656,7 +1656,7 @@
 
 	#banner {
 		position: relative;
-		background-color: rgba(21, 28, 23, 0.85);
+		background-color: rgba(152, 188, 239, 0.38);
 		background-image: url("images/overlay.png"), url("images/highlight.png");
 		background-position: top left, center center;
 		background-size: auto, 100% 250%;
@@ -1674,7 +1674,7 @@
 			font-family: 'Open Sans Condensed', sans-serif;
 			font-weight: 700;
 			text-transform: uppercase;
-			color: #575d59;
+			color: #000000;
 		}
 
 		#banner .button {
@@ -1684,7 +1684,7 @@
 			transition: border-color .2s ease-in-out, color .2s ease-in-out;
 			color: #b4b7b5;
 			background: transparent !important;
-			border: solid 4px #575d59;
+			border: solid 4px #000000;
 			border-color: rgba(87, 93, 89, 0.35);
 			border-radius: 16px;
 		}
@@ -1713,7 +1713,7 @@
 
 	#copyright {
 		display: inline-block;
-		background: #e7eae8;
+		background: #F9D64C;
 		padding: 0.75em 2em 0.75em 2em;
 		border-radius: 8px;
 		color: #8b9790;
@@ -1909,7 +1909,7 @@
 				#header .logo {
 					position: relative;
 					text-align: center;
-					border-top: solid 5px #e7eae8;
+					border-top: solid 5px #F9D64C;
 				}
 
 					#header .logo div {
@@ -1936,7 +1936,7 @@
 				top: 0;
 				left: 0;
 				z-index: 1000;
-				background-color: rgba(255, 255, 255, 0.95);
+				background-color: rgba(149, 187, 241, 0.68);
 				background-image: url("images/overlay.png");
 				width: 100%;
 				height: 3.25em;
@@ -1977,7 +1977,7 @@
 						position: relative;
 						display: block;
 						text-decoration: none;
-						color: #6b7770;
+						color: #000000;
 						top: -6px;
 						padding: 6px 1.5em 0.25em 1.5em;
 						border-bottom-left-radius: 6px;
@@ -1996,12 +1996,12 @@
 
 					#nav li.active a, #nav li.active span {
 						background: #C1CAC5;
-						color: #fff;
+						color: #824B27;
 					}
 
 					#nav li.current a {
-						background: #b1ddab;
-						color: #fff;
+						background: #F9D64C;
+						color: #9A5704;
 					}
 
 			.dropotron {
@@ -2362,10 +2362,10 @@
 		/* Sidebar + Content */
 
 			.sidebar {
-				border-top: solid 2px #e7eae8;
+				border-top: solid 2px #F9D64C;
 				padding-top: 5em;
 				margin-top: 5em;
-				border-bottom: solid 2px #e7eae8;
+				border-bottom: solid 2px #F9D64C;
 				padding-bottom: 5em;
 			}
 
@@ -2527,7 +2527,7 @@
 						position: absolute;
 						left: 0;
 						top: 0;
-						background: #b1ddab;
+						background: #F9D64C;
 						width: 44px;
 						height: 44px;
 						content: '\f0c9';
