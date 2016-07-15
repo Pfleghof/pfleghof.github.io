@@ -1763,11 +1763,11 @@ a#logo {}
 
 		#copyright .menu {
 			margin: 0;
-			color: #9A5704;
+			color: #0D1F8D;
 		}
 
 			#copyright .menu li {
-				border-color: #9A5704;
+				border-color: #0D1F8D;
 				border-width: 2px;
 				line-height: 1em;
 			}
@@ -2048,8 +2048,8 @@ a#logo {}
 					}
 
 					#nav li:hover a, #nav li:hover span {
-						background: #9A5704;
-						color: #fff;
+						background: #0D1F8D;
+						color: #F9D64C;
 					}
 
 					#nav li.active a, #nav li.active span {
@@ -2059,7 +2059,7 @@ a#logo {}
 
 					#nav li.current a {
 						background: #F9D64C;
-						color: #9A5704;
+						color: #0D1F8D;
 					}
 
 			.dropotron {
