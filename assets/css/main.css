@@ -1683,7 +1683,7 @@ a#logo {}
 
 	#footer-wrapper {
 		position: relative;
-		background-image: url("../../images/pf1.jpg"), url("images/overlay.png"), url("../../images/banner.jpg");
+		/* background-image: url("../../images/pf1.jpg"), url("images/overlay.png"), url("../../images/banner.jpg"); */
 		background-position: bottom center, center center, center center;
 		background-repeat: no-repeat, repeat, no-repeat;
 		background-size: 100%, auto, auto;
