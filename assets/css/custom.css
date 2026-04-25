@@ -158,7 +158,15 @@ hr, .box, input, textarea, select, button {
 	overflow: visible !important;
 }
 
-.container { max-width: 1100px; }
+/* Zero #main's template padding so the home section's divider gap matches others */
+#main { padding: 0 !important; }
+#main > .row { padding-bottom: 0 !important; }
+
+.container {
+	width: 100% !important;
+	max-width: 1100px;
+	box-sizing: border-box;
+}
 
 /* Images inherit palette borders */
 img { border-color: var(--color-a) !important; }
@@ -216,14 +224,29 @@ p, li, td, blockquote, figcaption {
 	text-align: left !important;
 }
 
+/* Cap the home banner to container width */
+#home #banner-wrapper {
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
 /* Scroll sections */
 .scroll-section {
 	scroll-margin-top: 1em;
-	padding: 3em 0;
-	border-bottom: 2px solid rgba(232, 149, 141, 0.55);
+	padding: 3em 0 0 0;
+	border-bottom: none;
 	border-top: none !important;
 }
-.scroll-section:last-of-type { border-bottom: none; }
+.scroll-section:last-of-type {
+	padding-bottom: 3em;
+}
+.scroll-section:not(:last-of-type)::after {
+	content: '';
+	display: block;
+	max-width: 1100px;
+	margin: 1.5em auto 0;
+	border-bottom: 2px solid rgba(232, 149, 141, 0.55);
+}
 
 .section-header {
 	padding: 0 1.5em 1em;
@@ -406,6 +429,7 @@ body.navPanel-visible #navPanel {
 h2.major, #footer h2.major, #footer-wrapper h2.major, .sidebar h2.major {
 	border-top: none !important;
 	border-bottom: none !important;
+	margin-bottom: 0.75em !important;
 }
 h2.major span, #footer h2.major span, .sidebar h2.major span {
 	background: var(--color-b) !important;
