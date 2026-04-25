@@ -1,0 +1,470 @@
+/* Pinned palette: A=#E8958D, B=#23223A (https://pigment.shapefactory.co/?a=E8958D&b=23223A) */
+:root {
+	--color-a: #E8958D;
+	--color-b: #23223A;
+	--sidebar-width: 200px;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+html, body {
+	background: var(--color-b) !important;
+	color: var(--color-a) !important;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+body, body.homepage, body.no-sidebar {
+	background-image: none !important;
+	background-color: var(--color-b) !important;
+}
+
+#page-wrapper {
+	background: var(--color-b) !important;
+	margin-left: var(--sidebar-width);
+	margin-right: var(--sidebar-width);
+	min-height: 100vh;
+}
+
+/* Pin text colors */
+h1, h2, h3, h4, h5, h6,
+p, li, span, strong, em, blockquote, figcaption, label, th, td,
+#banner h2, #banner p, #header h1, #header h1 a,
+.box h2, .box h3, .box p, .box li,
+#footer, #footer *, #copyright, #copyright * {
+	color: var(--color-a) !important;
+}
+
+a {
+	color: var(--color-a) !important;
+	text-decoration: underline;
+}
+a:hover, a:focus {
+	color: var(--color-b) !important;
+	background: var(--color-a) !important;
+}
+
+/* Sections / boxes */
+.box, .box.highlight, .box.features,
+#banner-wrapper, #banner,
+#main-wrapper, #main,
+#header, #footer-wrapper, #footer,
+section, article {
+	background: var(--color-b) !important;
+	background-image: none !important;
+	border-color: var(--color-a) !important;
+}
+
+.box {
+	border: solid 1px var(--color-a) !important;
+	border-radius: 6px;
+	padding: 1.5em;
+	margin-bottom: 1.5em;
+}
+
+hr, .box, input, textarea, select, button {
+	border-color: var(--color-a) !important;
+}
+
+/* Left sidebar navigation — desktop default: transparent, vertically centered bulleted list */
+#nav {
+	position: fixed !important;
+	top: 0 !important;
+	left: 0 !important;
+	width: var(--sidebar-width) !important;
+	height: 100vh !important;
+	background: transparent !important;
+	background-image: none !important;
+	color: var(--color-a) !important;
+	line-height: 1.6 !important;
+	font-size: 1.15em !important;
+	text-align: left !important;
+	padding: 2em 1.5em !important;
+	overflow-y: auto !important;
+	overflow-x: hidden !important;
+	z-index: 1100;
+	box-sizing: border-box;
+	border-right: none !important;
+	display: flex !important;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+#nav ul {
+	list-style: disc outside !important;
+	padding: 0 0 0 1.25em !important;
+	margin: 0 !important;
+	display: block !important;
+	position: relative;
+	width: 100%;
+	transition: transform .5s cubic-bezier(.2,.7,.2,1);
+	will-change: transform;
+}
+
+#nav li {
+	display: list-item !important;
+	margin: 0.35em 0 !important;
+	padding: 0 !important;
+	top: 0 !important;
+	position: static !important;
+	white-space: normal !important;
+	color: var(--color-a) !important;
+	font-size: 1em;
+	opacity: 0.4;
+	transform: scale(0.92);
+	transform-origin: left center;
+	transition: opacity .35s ease, transform .35s ease, font-size .35s ease;
+}
+#nav li::marker { color: var(--color-a); }
+
+#nav li a, #nav li span {
+	display: inline !important;
+	top: 0 !important;
+	padding: 0 !important;
+	color: var(--color-a) !important;
+	background: transparent !important;
+	border-radius: 0 !important;
+	text-decoration: none;
+	font-weight: 400;
+	text-transform: none;
+	letter-spacing: 0.02em;
+}
+#nav li:hover { opacity: 0.85; }
+#nav li:hover a, #nav li:hover span { text-decoration: underline; }
+
+/* Picker-wheel focus ramp: current is biggest, neighbors medium, far items dim */
+#nav li.current {
+	opacity: 1 !important;
+	transform: scale(1.35);
+	font-weight: 700;
+}
+#nav li.current a, #nav li.current span { font-weight: 700; }
+#nav li.current + li,
+#nav li:has(+ li.current) {
+	opacity: 0.75;
+	transform: scale(1.05);
+}
+
+#nav li:hover, #nav li.active, #nav li.current { top: 0 !important; background: transparent !important; }
+
+/* Make everything scrollable — kill any fixed heights on content */
+#main-wrapper, #main, #banner-wrapper, #banner, #footer-wrapper {
+	height: auto !important;
+	min-height: 0 !important;
+	max-height: none !important;
+	overflow: visible !important;
+}
+
+.container { max-width: 1100px; }
+
+/* Images inherit palette borders */
+img { border-color: var(--color-a) !important; }
+
+/* Back-to-top button — persistent */
+#back-to-top {
+	position: fixed !important;
+	right: 1.5em !important;
+	bottom: 1.5em !important;
+	width: 3em !important;
+	height: 3em !important;
+	line-height: 3em !important;
+	text-align: center !important;
+	display: block !important;
+	background: var(--color-a) !important;
+	color: var(--color-b) !important;
+	border: 2px solid var(--color-b) !important;
+	border-radius: 50% !important;
+	text-decoration: none !important;
+	font-size: 1.2em;
+	font-weight: 700;
+	z-index: 1100;
+	box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+	transition: transform .15s ease-in-out, opacity .15s, background-color .15s, color .15s;
+	cursor: pointer;
+	outline: none !important;
+	box-sizing: border-box;
+	padding: 0 !important;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-appearance: none;
+	appearance: none;
+}
+/* Hover-only rules gated so touch taps don't leave the button stuck in hover state. */
+@media (hover: hover) {
+	#back-to-top:hover {
+		background: var(--color-b) !important;
+		color: var(--color-a) !important;
+		transform: translateY(-3px);
+	}
+}
+#back-to-top,
+#back-to-top:focus,
+#back-to-top:active,
+#back-to-top:visited {
+	background: var(--color-a) !important;
+	color: var(--color-b) !important;
+	border-radius: 50% !important;
+}
+
+/* Scroll sections */
+.scroll-section {
+	scroll-margin-top: 1em;
+	padding: 3em 0;
+	border-bottom: 2px solid rgba(232, 149, 141, 0.55);
+	border-top: none !important;
+}
+.scroll-section:last-of-type { border-bottom: none; }
+
+.section-header {
+	padding: 0 1.5em 1em;
+}
+.section-header h1 {
+	font-size: 2em;
+	margin: 0;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+/* Gallery */
+.gallery {
+	text-align: center;
+}
+.gallery img {
+	display: inline-block;
+	width: 30%;
+	min-width: 220px;
+	height: auto;
+	margin: 0.5%;
+	border: 2px solid var(--color-a);
+	border-radius: 4px;
+	vertical-align: middle;
+}
+
+/* Contact grid */
+.contact-grid {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	gap: 1.5em;
+	margin-top: 1.5em;
+}
+.contact-grid .mail {
+	padding: 0.75em 1em;
+	border: 1px solid var(--color-a);
+	border-radius: 4px;
+	margin-bottom: 0.75em;
+}
+.contact-grid iframe {
+	border: 2px solid var(--color-a) !important;
+	border-radius: 4px;
+	width: 100%;
+}
+
+@media (max-width: 768px) {
+	.contact-grid { grid-template-columns: 1fr; }
+	.gallery img { width: 46%; }
+}
+
+/* Hamburger toggle — hidden on desktop, visible on mobile */
+#nav-toggle {
+	display: none;
+	position: fixed;
+	top: 0.5em;
+	left: 0.5em;
+	width: 2.5em;
+	height: 2.5em;
+	background: var(--color-a) !important;
+	color: var(--color-b) !important;
+	border: 2px solid var(--color-b);
+	border-radius: 4px;
+	z-index: 1300;
+	cursor: pointer;
+	padding: 0;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+	-webkit-tap-highlight-color: transparent;
+	-webkit-appearance: none;
+	appearance: none;
+}
+#nav-toggle span, #nav-toggle span::before, #nav-toggle span::after {
+	display: block;
+	position: absolute;
+	left: 50%;
+	width: 1.2em;
+	height: 2px;
+	background: var(--color-b);
+	transform: translateX(-50%);
+	transition: transform .2s ease, top .2s ease, opacity .2s ease;
+}
+#nav-toggle span { top: 50%; margin-top: -1px; }
+#nav-toggle span::before { content: ''; top: -7px; left: 0; transform: none; }
+#nav-toggle span::after { content: ''; top: 7px; left: 0; transform: none; }
+body.nav-open #nav-toggle span { background: transparent; }
+body.nav-open #nav-toggle span::before { top: 0; transform: rotate(45deg); }
+body.nav-open #nav-toggle span::after { top: 0; transform: rotate(-45deg); }
+
+/* Drawer backdrop */
+#nav-backdrop {
+	display: none;
+	position: fixed;
+	inset: 0;
+	background: rgba(0,0,0,0.5);
+	z-index: 1050;
+	opacity: 0;
+	transition: opacity .25s ease;
+}
+body.nav-open #nav-backdrop { display: block; opacity: 1; }
+
+/* Small screens: hide sidebar off-screen, slide in on toggle */
+@media (max-width: 768px) {
+	:root { --sidebar-width: 0px; }
+	#page-wrapper { margin-left: 0; padding-top: 3.5em; }
+	#nav-toggle { display: block; }
+
+	/* Drawer look — pink bg, button-style items (restores mobile visual) */
+	#nav {
+		display: block !important;
+		width: 240px !important;
+		height: 100vh !important;
+		padding: 3.5em 1em 1em 1em !important;
+		background: var(--color-a) !important;
+		color: var(--color-b) !important;
+		border-right: 2px solid var(--color-b) !important;
+		transform: translateX(-100%);
+		transition: transform .25s ease;
+		z-index: 1100;
+	}
+	body.nav-open #nav { transform: translateX(0); }
+
+	#nav ul {
+		list-style: none !important;
+		padding: 0 !important;
+	}
+	#nav ul { transform: none !important; }
+	#nav li {
+		display: block !important;
+		margin: 0 0 0.5em 0 !important;
+		color: var(--color-b) !important;
+		opacity: 1 !important;
+		transform: none !important;
+		font-size: 1em !important;
+	}
+	#nav li.current { transform: none !important; }
+	#nav li a, #nav li span {
+		display: block !important;
+		padding: 0.6em 0.8em !important;
+		color: var(--color-b) !important;
+		background: transparent !important;
+		border-radius: 4px !important;
+		font-weight: 700;
+		text-transform: uppercase;
+		text-decoration: none;
+	}
+	#nav li:hover a, #nav li:hover span,
+	#nav li.current a, #nav li.current span {
+		background: var(--color-b) !important;
+		color: var(--color-a) !important;
+		text-decoration: none;
+	}
+
+	/* Coherent content padding on mobile — boxes no longer kiss the edges */
+	.scroll-section { padding-left: 1em; padding-right: 1em; }
+	.section-header { padding: 0 0 1em 0; }
+}
+
+/* Kill template mobile off-canvas (titleBar + navPanel) — nav.js also removes the DOM nodes. */
+#titleBar, #navPanel {
+	display: none !important;
+	visibility: hidden !important;
+	pointer-events: none !important;
+	opacity: 0 !important;
+}
+body.navPanel-visible #page-wrapper,
+body.navPanel-visible #titleBar,
+body.navPanel-visible #navPanel {
+	transform: none !important;
+}
+#titleBar .toggle, #titleBar .toggle:before, #titleBar .toggle:active:before {
+	background: transparent !important;
+	display: none !important;
+}
+
+/* Kill yellow template artefacts */
+#main-wrapper {
+	background: transparent !important;
+	border-top: none !important;
+	border-bottom: none !important;
+}
+h2.major, #footer h2.major, #footer-wrapper h2.major, .sidebar h2.major {
+	border-top: none !important;
+	border-bottom: none !important;
+}
+h2.major span, #footer h2.major span, .sidebar h2.major span {
+	background: var(--color-b) !important;
+	background-color: var(--color-b) !important;
+	color: var(--color-a) !important;
+	padding: 0 !important;
+	top: 0 !important;
+}
+ul.divided > li, .sidebar {
+	border-top-color: var(--color-a) !important;
+	border-bottom-color: var(--color-a) !important;
+}
+#copyright, #footer, #footer-wrapper {
+	background: transparent !important;
+	background-color: transparent !important;
+	color: var(--color-a) !important;
+	padding: 0 !important;
+	border-radius: 0 !important;
+	border: none !important;
+}
+#copyright .menu, #copyright .menu li, #copyright a {
+	color: var(--color-a) !important;
+	border-color: var(--color-a) !important;
+}
+
+/* Banner — neutralize blue template bg */
+#banner {
+	background: transparent !important;
+	background-image: none !important;
+}
+#banner h2, #banner p { color: var(--color-a) !important; }
+
+/* Language switcher — persistent top-right button */
+#lang-switcher {
+	position: fixed !important;
+	top: 1em;
+	right: 1em;
+	z-index: 1200;
+	display: inline-block;
+	padding: 0.45em 0.9em;
+	background: var(--color-a) !important;
+	color: var(--color-b) !important;
+	border: 2px solid var(--color-b);
+	border-radius: 4px;
+	font-weight: 700;
+	font-size: 0.85em;
+	text-transform: uppercase;
+	text-decoration: none !important;
+	letter-spacing: 0.08em;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+	transition: background-color .15s, color .15s, transform .15s;
+	outline: none !important;
+}
+#lang-switcher:hover {
+	background: var(--color-b) !important;
+	color: var(--color-a) !important;
+	transform: translateY(-1px);
+}
+#lang-switcher:focus, #lang-switcher:active {
+	background: var(--color-a) !important;
+	color: var(--color-b) !important;
+}
+@media (max-width: 768px) {
+	#lang-switcher {
+		top: 0.5em;
+		right: 0.5em;
+		padding: 0.3em 0.6em;
+		font-size: 0.75em;
+	}
+}
