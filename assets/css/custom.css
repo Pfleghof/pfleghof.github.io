@@ -208,6 +208,14 @@ img { border-color: var(--color-a) !important; }
 	border-radius: 50% !important;
 }
 
+/* Justify body/content text — excludes headings and navigation */
+p, li, td, blockquote, figcaption {
+	text-align: justify;
+}
+#nav li {
+	text-align: left !important;
+}
+
 /* Scroll sections */
 .scroll-section {
 	scroll-margin-top: 1em;
