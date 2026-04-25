@@ -550,3 +550,7 @@ ul.divided > li, .sidebar {
 	background-repeat: no-repeat !important;
 	min-height: 320px;
 }
+
+.align-right {
+	text-align: right;
+}

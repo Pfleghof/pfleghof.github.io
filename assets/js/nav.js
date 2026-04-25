@@ -36,7 +36,7 @@
 	];
 	var navEN = [
 		['Home', 'home'],
-		['Self-organised', 'self-administration'],
+		['Self-administration', 'self-administration'],
 		['History', 'history'],
 		['Pictures', 'pictures'],
 		['Contact', 'contact']
