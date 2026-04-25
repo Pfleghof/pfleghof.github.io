@@ -428,7 +428,7 @@ ul.divided > li, .sidebar {
 	background: transparent !important;
 	background-image: none !important;
 }
-#banner h2, #banner p { color: var(--color-a) !important; }
+#banner h2, #banner p { color: var(--color-a) !important; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
 
 /* Language switcher — persistent top-right button */
 #lang-switcher {
@@ -467,4 +467,54 @@ ul.divided > li, .sidebar {
 		padding: 0.3em 0.6em;
 		font-size: 0.75em;
 	}
+}
+
+/* ── Section header background images ── */
+#selbstverwaltung .section-header,
+#self-administration .section-header,
+#geschichte .section-header,
+#history .section-header,
+#kontakt .section-header,
+#contact .section-header {
+	min-height: 220px;
+	display: flex;
+	align-items: flex-end;
+	padding: 0 1.5em 1.5em !important;
+	background-size: cover !important;
+	background-position: center !important;
+	background-repeat: no-repeat !important;
+	border-radius: 4px;
+	margin-bottom: 1em;
+}
+
+#selbstverwaltung .section-header,
+#self-administration .section-header {
+	background-image:
+		linear-gradient(to bottom, transparent 40%, rgba(35, 34, 58, 0.85) 100%),
+		url("../../images/selbstverwaltung.jpg");
+}
+
+#geschichte .section-header,
+#history .section-header {
+	background-image:
+		linear-gradient(to bottom, transparent 40%, rgba(35, 34, 58, 0.85) 100%),
+		url("../../images/geschichte.jpg");
+}
+
+#kontakt .section-header,
+#contact .section-header {
+	background-image:
+		linear-gradient(to bottom, transparent 40%, rgba(35, 34, 58, 0.85) 100%),
+		url("../../images/pfl_sign.jpg");
+}
+
+/* Home banner — needs !important to beat the explicit #banner-wrapper reset */
+#home #banner-wrapper {
+	background-image:
+		linear-gradient(to bottom, transparent 30%, rgba(35, 34, 58, 0.85) 100%),
+		url("../../images/pf1.jpg") !important;
+	background-size: cover !important;
+	background-position: center !important;
+	background-repeat: no-repeat !important;
+	min-height: 320px;
 }
