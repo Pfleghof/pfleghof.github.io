@@ -428,7 +428,7 @@ body.nav-open #nav-backdrop { display: block; opacity: 1; }
 	}
 	body.nav-open #nav { transform: translateX(0); }
 
-	#nav ul { list-style: none; padding: 0; }
+	#nav ul { list-style: none; padding: 0; transform: none !important; }
 	#nav li {
 		display: block;
 		margin: 0 0 0.5em 0;
@@ -457,7 +457,7 @@ body.nav-open #nav-backdrop { display: block; opacity: 1; }
 	.scroll-section { padding-left: 1em; padding-right: 1em; }
 	.section-header { padding: 0 0 1em 0; }
 	.contact-grid { grid-template-columns: 1fr; }
-	.gallery img { width: 46%; }
+	.gallery img { width: 46%; min-width: 0; }
 
 	#banner h2 { font-size: 1.85em; }
 

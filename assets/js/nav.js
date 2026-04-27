@@ -63,9 +63,12 @@
 	}
 
 	function centerCurrent() {
-		// Skip on mobile drawer — block layout, no picker-wheel centering.
-		if (window.matchMedia('(max-width: 768px)').matches) return;
 		const ul = document.querySelector('#nav ul');
+		// On mobile drawer: clear any stale desktop transform and bail out.
+		if (window.matchMedia('(max-width: 768px)').matches) {
+			if (ul) ul.style.transform = '';
+			return;
+		}
 		const cur = document.querySelector('#nav li.current');
 		if (!ul || !cur) return;
 		const ulRect = ul.getBoundingClientRect();
