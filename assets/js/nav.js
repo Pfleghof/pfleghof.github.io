@@ -122,7 +122,7 @@
 
 	function bindSmoothScroll() {
 		if (!onMaster) return;
-		var links = document.querySelectorAll('#nav a[href^="#"]');
+		var links = document.querySelectorAll('#nav a[href^="#"], #back-to-top');
 		for (var i = 0; i < links.length; i++) {
 			links[i].addEventListener('click', function (e) {
 				var href = this.getAttribute('href');
@@ -148,23 +148,6 @@
 		var target = hashMap[initialHash] || 'home';
 		a.href = otherMaster + '#' + target;
 		document.body.appendChild(a);
-	}
-
-	function killTemplateOffCanvas() {
-		// Template's main.js injects #titleBar and #navPanel (off-canvas). Remove them so they
-		// can't leak yellow toggle, navPanel-visible shifts, or other legacy styling.
-		var kill = function () {
-			var tb = document.getElementById('titleBar');
-			if (tb && tb.parentNode) tb.parentNode.removeChild(tb);
-			var np = document.getElementById('navPanel');
-			if (np && np.parentNode) np.parentNode.removeChild(np);
-			document.body.classList.remove('navPanel-visible');
-		};
-		kill();
-		// main.js runs on jQuery ready — same tick as ours. Retry shortly.
-		setTimeout(kill, 0);
-		setTimeout(kill, 200);
-		window.addEventListener('load', kill);
 	}
 
 	function injectHamburger() {
@@ -225,7 +208,6 @@
 		injectHamburger();
 		bindSmoothScroll();
 		initScrollspy();
-		killTemplateOffCanvas();
 	}
 
 	if (document.readyState === 'loading') {
