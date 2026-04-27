@@ -20,7 +20,7 @@ img { max-width: 100%; height: auto; }
 :root {
 	--color-a: #E8958D;
 	--color-b: #23223A;
-	--sidebar-width: 250px;
+	--sidebar-width: 290px;
 	--container-max: 1100px;
 	--btn-size: 3em;
 	--gallery-min: 220px;
@@ -117,6 +117,8 @@ img { border-color: var(--color-a); }
 	padding: 0 0 0 1.25em;
 	margin: 0;
 	width: 100%;
+	transition: transform .5s cubic-bezier(.2,.7,.2,1);
+	will-change: transform;
 }
 
 #nav li {
@@ -136,6 +138,12 @@ img { border-color: var(--color-a); }
 }
 #nav li:hover { opacity: 0.85; }
 #nav li:hover a, #nav li:hover span { text-decoration: underline; }
+#nav li a:hover,
+#nav li a:focus,
+#nav li a:active {
+	background: none;
+	color: var(--color-a);
+}
 
 /* Picker-wheel focus: current is biggest, neighbors medium, far items dim */
 #nav li.current {
@@ -211,6 +219,7 @@ img { border-color: var(--color-a); }
 .section-header h1 {
 	font-size: 2em;
 	letter-spacing: 0.05em;
+	margin-bottom: 0;
 }
 
 #selbstverwaltung .section-header,
