@@ -1,115 +1,96 @@
 (function () {
-	var page = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
-	if (page === '') page = 'index.html';
+	'use strict';
 
-	var englishPages = {
-		'index-english.html': 1,
-		'pictures.html': 1,
-		'self-administration.html': 1,
-		'history.html': 1,
-		'contact.html': 1
-	};
-	var isEnglish = !!englishPages[page];
+	const PAGE_DE = 'index.html';
+	const PAGE_EN = 'index-english.html';
 
-	var masterDE = 'index.html';
-	var masterEN = 'index-english.html';
-	var onMaster = page === masterDE || page === masterEN;
-
-	// DE section -> EN section
-	var deToEn = {
-		'home': 'home',
-		'selbstverwaltung': 'self-administration',
-		'geschichte': 'history',
-		'galerie': 'pictures',
-		'kontakt': 'contact'
-	};
-	var enToDe = {};
-	for (var k in deToEn) enToDe[deToEn[k]] = k;
-
-	// [label, hash-id-on-master, href-fallback-for-non-master]
-	var navDE = [
-		['Home', 'home'],
-		['Selbstverwaltung', 'selbstverwaltung'],
-		['Geschichte', 'geschichte'],
-		['Galerie', 'galerie'],
-		['Kontakt', 'kontakt']
-	];
-	var navEN = [
-		['Home', 'home'],
-		['Self-administration', 'self-administration'],
-		['History', 'history'],
-		['Pictures', 'pictures'],
-		['Contact', 'contact']
+	// Single source of truth: each section has its DE/EN id + DE/EN label.
+	const SECTIONS = [
+		{ de: 'home',             en: 'home',                labelDE: 'Home',             labelEN: 'Home' },
+		{ de: 'selbstverwaltung', en: 'self-administration', labelDE: 'Selbstverwaltung', labelEN: 'Self-administration' },
+		{ de: 'geschichte',       en: 'history',             labelDE: 'Geschichte',       labelEN: 'History' },
+		{ de: 'galerie',          en: 'pictures',            labelDE: 'Galerie',          labelEN: 'Pictures' },
+		{ de: 'kontakt',          en: 'contact',             labelDE: 'Kontakt',          labelEN: 'Contact' }
 	];
 
-	var items = isEnglish ? navEN : navDE;
-	var master = isEnglish ? masterEN : masterDE;
-	var otherMaster = isEnglish ? masterDE : masterEN;
-	var hashMap = isEnglish ? enToDe : deToEn;
+	const page = (location.pathname.split('/').pop() || PAGE_DE).toLowerCase();
+	const isEnglish = page === PAGE_EN;
+	const otherPage = isEnglish ? PAGE_DE : PAGE_EN;
+	const idKey = isEnglish ? 'en' : 'de';
+	const otherIdKey = isEnglish ? 'de' : 'en';
+	const labelKey = isEnglish ? 'labelEN' : 'labelDE';
 
-	var html = '<ul>';
-	for (var i = 0; i < items.length; i++) {
-		var label = items[i][0];
-		var hash = items[i][1];
-		var href;
-		if (hash === null) {
-			href = items[i][2];
-		} else if (onMaster) {
-			href = '#' + hash;
-		} else {
-			href = master + '#' + hash;
+	// Map: section-id-on-this-page -> section-id-on-other-page
+	const otherIdFor = {};
+	for (const s of SECTIONS) otherIdFor[s[idKey]] = s[otherIdKey];
+
+	// DOM refs cached after build
+	let navItems = [];
+
+	function buildNav() {
+		let nav = document.getElementById('nav');
+		if (!nav) {
+			nav = document.createElement('nav');
+			nav.id = 'nav';
+			document.body.insertBefore(nav, document.body.firstChild);
 		}
-		var dataAttr = hash ? ' data-section="' + hash + '"' : '';
-		html += '<li' + dataAttr + '><a href="' + href + '">' + label + '</a></li>';
+		const ul = document.createElement('ul');
+		for (const s of SECTIONS) {
+			const id = s[idKey];
+			const li = document.createElement('li');
+			li.dataset.section = id;
+			const a = document.createElement('a');
+			a.href = '#' + id;
+			a.textContent = s[labelKey];
+			li.appendChild(a);
+			ul.appendChild(li);
+		}
+		nav.replaceChildren(ul);
+		navItems = Array.from(ul.querySelectorAll('li[data-section]'));
 	}
-	html += '</ul>';
 
 	function setActive(sectionId) {
-		var lis = document.querySelectorAll('#nav li[data-section]');
-		for (var i = 0; i < lis.length; i++) {
-			if (lis[i].getAttribute('data-section') === sectionId) {
-				lis[i].classList.add('current');
-			} else {
-				lis[i].classList.remove('current');
+		for (const li of navItems) {
+			const isCurrent = li.dataset.section === sectionId;
+			li.classList.toggle('current', isCurrent);
+			const a = li.querySelector('a');
+			if (a) {
+				if (isCurrent) a.setAttribute('aria-current', 'location');
+				else a.removeAttribute('aria-current');
 			}
 		}
 		centerCurrent();
 	}
 
 	function centerCurrent() {
-		// Skip on mobile — drawer uses block layout, no picker-wheel centering
+		// Skip on mobile drawer — block layout, no picker-wheel centering.
 		if (window.matchMedia('(max-width: 768px)').matches) return;
-		var nav = document.getElementById('nav');
-		if (!nav) return;
-		var ul = nav.querySelector('ul');
-		var cur = nav.querySelector('li.current');
+		const ul = document.querySelector('#nav ul');
+		const cur = document.querySelector('#nav li.current');
 		if (!ul || !cur) return;
-		var ulRect = ul.getBoundingClientRect();
-		var curRect = cur.getBoundingClientRect();
-		var curOffsetInUl = (curRect.top - ulRect.top) + curRect.height / 2;
-		var delta = ulRect.height / 2 - curOffsetInUl;
-		ul.style.transform = 'translateY(' + delta.toFixed(1) + 'px)';
+		const ulRect = ul.getBoundingClientRect();
+		const curRect = cur.getBoundingClientRect();
+		const curMidInUl = (curRect.top - ulRect.top) + curRect.height / 2;
+		const delta = ulRect.height / 2 - curMidInUl;
+		ul.style.transform = `translateY(${delta.toFixed(1)}px)`;
 	}
 
 	function updateLangSwitcher(sectionId) {
-		var sw = document.getElementById('lang-switcher');
+		const sw = document.getElementById('lang-switcher');
 		if (!sw) return;
-		var target = hashMap[sectionId] || hashMap['home'] || '';
-		sw.href = otherMaster + (target ? '#' + target : '');
+		const target = otherIdFor[sectionId] || otherIdFor['home'];
+		sw.href = `${otherPage}#${target}`;
 	}
 
 	function initScrollspy() {
-		if (!onMaster) return;
-		var sections = document.querySelectorAll('section.scroll-section');
+		const sections = Array.from(document.querySelectorAll('section.scroll-section'));
 		if (!sections.length) return;
 
 		function onScroll() {
-			var y = window.scrollY || window.pageYOffset;
-			var viewportMid = y + window.innerHeight * 0.3;
-			var activeId = sections[0].id;
-			for (var i = 0; i < sections.length; i++) {
-				var s = sections[i];
-				if (s.offsetTop <= viewportMid) activeId = s.id;
+			const triggerY = window.scrollY + window.innerHeight * 0.3;
+			let activeId = sections[0].id;
+			for (const s of sections) {
+				if (s.offsetTop <= triggerY) activeId = s.id;
 			}
 			setActive(activeId);
 			updateLangSwitcher(activeId);
@@ -121,89 +102,72 @@
 	}
 
 	function bindSmoothScroll() {
-		if (!onMaster) return;
-		var links = document.querySelectorAll('#nav a[href^="#"], #back-to-top');
-		for (var i = 0; i < links.length; i++) {
-			links[i].addEventListener('click', function (e) {
-				var href = this.getAttribute('href');
-				if (!href || href.charAt(0) !== '#') return;
-				var id = href.slice(1);
-				var el = document.getElementById(id);
+		const links = document.querySelectorAll('#nav a[href^="#"], #back-to-top');
+		for (const a of links) {
+			a.addEventListener('click', (e) => {
+				const href = a.getAttribute('href');
+				if (!href || !href.startsWith('#')) return;
+				const id = href.slice(1);
+				const el = document.getElementById(id);
 				if (!el) return;
 				e.preventDefault();
 				el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-				if (history.pushState) history.pushState(null, '', '#' + id);
+				history.pushState(null, '', '#' + id);
 			});
 		}
 	}
 
 	function injectLangSwitcher() {
 		if (document.getElementById('lang-switcher')) return;
-		var a = document.createElement('a');
+		const a = document.createElement('a');
 		a.id = 'lang-switcher';
 		a.textContent = isEnglish ? 'DE' : 'EN';
 		a.setAttribute('aria-label', isEnglish ? 'Zur deutschen Version wechseln' : 'Switch to English');
-		// Default target; scrollspy will refine with current section on master.
-		var initialHash = location.hash ? location.hash.slice(1) : 'home';
-		var target = hashMap[initialHash] || 'home';
-		a.href = otherMaster + '#' + target;
+		const initialId = location.hash ? location.hash.slice(1) : 'home';
+		a.href = `${otherPage}#${otherIdFor[initialId] || 'home'}`;
 		document.body.appendChild(a);
 	}
 
 	function injectHamburger() {
-		if (!document.getElementById('nav-toggle')) {
-			var btn = document.createElement('button');
-			btn.id = 'nav-toggle';
-			btn.type = 'button';
-			btn.setAttribute('aria-label', isEnglish ? 'Toggle menu' : 'Menü umschalten');
-			btn.setAttribute('aria-controls', 'nav');
-			btn.setAttribute('aria-expanded', 'false');
-			btn.innerHTML = '<span></span>';
-			document.body.appendChild(btn);
-		}
-		if (!document.getElementById('nav-backdrop')) {
-			var bd = document.createElement('div');
-			bd.id = 'nav-backdrop';
-			document.body.appendChild(bd);
-		}
-		var toggle = document.getElementById('nav-toggle');
-		var backdrop = document.getElementById('nav-backdrop');
-		function close() {
+		const toggle = document.createElement('button');
+		toggle.id = 'nav-toggle';
+		toggle.type = 'button';
+		toggle.setAttribute('aria-label', isEnglish ? 'Toggle menu' : 'Menü umschalten');
+		toggle.setAttribute('aria-controls', 'nav');
+		toggle.setAttribute('aria-expanded', 'false');
+		toggle.innerHTML = '<span></span>';
+
+		const backdrop = document.createElement('div');
+		backdrop.id = 'nav-backdrop';
+
+		document.body.append(toggle, backdrop);
+
+		const close = () => {
 			document.body.classList.remove('nav-open');
 			toggle.setAttribute('aria-expanded', 'false');
-		}
-		function open() {
+		};
+		const open = () => {
 			document.body.classList.add('nav-open');
 			toggle.setAttribute('aria-expanded', 'true');
-		}
-		toggle.addEventListener('click', function () {
-			if (document.body.classList.contains('nav-open')) close(); else open();
+		};
+		toggle.addEventListener('click', () => {
+			document.body.classList.contains('nav-open') ? close() : open();
 		});
 		backdrop.addEventListener('click', close);
-		// Close drawer after tapping a nav link on mobile
-		var nav = document.getElementById('nav');
-		if (nav) {
-			nav.addEventListener('click', function (e) {
-				var t = e.target;
-				while (t && t !== nav) {
-					if (t.tagName === 'A') { close(); return; }
-					t = t.parentNode;
-				}
-			});
-		}
-		document.addEventListener('keydown', function (e) {
+
+		// Close drawer after tapping any nav link.
+		const nav = document.getElementById('nav');
+		nav?.addEventListener('click', (e) => {
+			if (e.target.closest('a')) close();
+		});
+
+		document.addEventListener('keydown', (e) => {
 			if (e.key === 'Escape') close();
 		});
 	}
 
-	function inject() {
-		var nav = document.getElementById('nav');
-		if (!nav) {
-			nav = document.createElement('nav');
-			nav.id = 'nav';
-			document.body.insertBefore(nav, document.body.firstChild);
-		}
-		nav.innerHTML = html;
+	function init() {
+		buildNav();
 		injectLangSwitcher();
 		injectHamburger();
 		bindSmoothScroll();
@@ -211,8 +175,8 @@
 	}
 
 	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', inject);
+		document.addEventListener('DOMContentLoaded', init);
 	} else {
-		inject();
+		init();
 	}
 })();
